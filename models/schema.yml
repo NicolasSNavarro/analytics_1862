@@ -5,3 +5,24 @@ sources:
   - name: gz_raw_data
     tables:
       - name: raw_gz_product
+      - name: raw_gz_sales
+      - name: raw_gz_ship
+
+models:
+  - name: raw_gz_product
+    description: Nuestro modelo de producto
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+  - name: raw_gz_sales
+    description: Nuestro modelo de ventas
+    columns:
+      - name: date_date
+        description: La columna de fechas
+      - name: orders_id
+        description: Columna con llave foranea de orders
+        tests:
+          - unique
+          - not_null
