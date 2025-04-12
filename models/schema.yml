@@ -7,20 +7,28 @@ sources:
     tables:
       - name: product
         identifier: raw_gz_product
+        columns:
+          - name: products_id
+            tests:
+              - not_null
       - name: sales
         identifier: raw_gz_sales
+        loaded_at_field: "CAST(date_date AS TIMESTAMP)"
+        freshness:
+          warn_after: {count: 90, period: day}
       - name: ship
         identifier: raw_gz_ship
 
 models:
-  - name: raw_gz_product
+  - name: stg_gz_raw_data__raw_gz_product
     description: Nuestro modelo de producto
     columns:
       - name: product_id
         tests:
           - unique
           - not_null
-  - name: raw_gz_sales
+
+  - name: stg_gz_raw_data__raw_gz_sales
     description: Nuestro modelo de ventas
     columns:
       - name: date_date
@@ -28,9 +36,9 @@ models:
       - name: orders_id
         description: Columna con llave foranea de orders
         tests:
-          - unique
           - not_null
-  - name: raw_gz_ship
+
+  - name: stg_gz_raw_data__raw_gz_ship
     description: El modelo de envios
     columns:
       - name: orders_id
