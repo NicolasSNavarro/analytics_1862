@@ -26,3 +26,22 @@ models:
         tests:
           - unique
           - not_null
+  - name: raw_gz_ship
+    description: El modelo de envios
+    columns:
+      - name: orders_id
+        description: Llave foranea de orders
+        tests:
+          - not_null
+      - name: shipping_fee
+        description: Impuesto de envio
+        tests:
+          - not_null
+      - name: logcost
+        description: Info de cost
+        tests:
+          - not_null
+      - name: ship_cost
+        description: Costos de envio
+        tests:
+          - not_null
